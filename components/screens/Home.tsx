@@ -12,3 +12,5 @@ const Home: FunctionComponent = () => {
     )
     
 }
+
+export default Home;
