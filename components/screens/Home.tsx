@@ -1,14 +1,19 @@
 import { FunctionComponent } from "react";
 import { Container } from "../shared/container";
 import { Text } from "react-native";
+import { SafeAreaView } from "react-native";
 
 
 const Home: FunctionComponent = () => {
 
     return (
-        <Container>
-            <Text>WELCOME</Text>
-        </Container>
+        
+    <Container>
+        <SafeAreaView>
+            <Text style={{color:"white"}}>WELCOME</Text>
+        </SafeAreaView> 
+    </Container>
+       
     )
     
 }
