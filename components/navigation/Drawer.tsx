@@ -22,8 +22,8 @@ const Drawer = () => {
       headerShown:false
         }}
     >
-      <Drawer.Screen name="Feed" component={Home} />
-      <Drawer.Screen name="Article" component={FoodRoulette} />
+      <Drawer.Screen name="Home" component={Home} />
+      <Drawer.Screen name="Food Roulette" component={FoodRoulette} />
     </Drawer.Navigator>
   );
 }
