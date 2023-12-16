@@ -31,9 +31,24 @@ export const Signup:FunctionComponent = () => {
             {({ handleChange, handleBlur, handleSubmit, values }) => (
             <View>
                 <TextInput
+                onChangeText={handleChange('firstName')}
+                onBlur={handleBlur('firstName')}
+                value={values.firstName}
+                />
+                <TextInput
+                onChangeText={handleChange('lastName')}
+                onBlur={handleBlur('lastName')}
+                value={values.lastName}
+                />
+                <TextInput
                 onChangeText={handleChange('email')}
                 onBlur={handleBlur('email')}
                 value={values.email}
+                />
+                <TextInput
+                onChangeText={handleChange('password')}
+                onBlur={handleBlur('password')}
+                value={values.password}
                 />
                 <Button onPress={() => handleSubmit} title="Submit" />
             </View>
