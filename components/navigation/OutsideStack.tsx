@@ -16,8 +16,9 @@ const OutsideStack = () => {
 
     return (
     <Stack.Navigator>
+        <Stack.Screen name="OutsideDrawer" component={OutsideDrawer} />
         <Stack.Screen name="Signup" component={Signup}/>
-        
+        <Stack.Screen name="Login" component={Login}/>
     </Stack.Navigator>
     )
 }
