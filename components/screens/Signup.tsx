@@ -13,6 +13,7 @@ const signupSchema = Yup.object().shape({
     .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
     "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"),
     // use the regex???? 
+    confirmPassword: Yup.string().required('Please confirm password').oneOf([Yup.ref('password')], "Passwords do not match")
 })
 
 export const Signup:FunctionComponent = () => {
@@ -24,7 +25,9 @@ export const Signup:FunctionComponent = () => {
                 firstName:'',
                 lastName:'',
                 email: '', 
-                password:'' }}
+                password:'',
+                confirmPassword: '',
+                }}
             onSubmit={values => console.log(values)}
             validationSchema={signupSchema}
             >
@@ -49,6 +52,11 @@ export const Signup:FunctionComponent = () => {
                 onChangeText={handleChange('password')}
                 onBlur={handleBlur('password')}
                 value={values.password}
+                />
+                <TextInput
+                onChangeText={handleChange('confirmPassword')}
+                onBlur={handleBlur('confirmPassword')}
+                value={values.confirmPassword}
                 />
                 <Button onPress={() => handleSubmit} title="Submit" />
             </View>
