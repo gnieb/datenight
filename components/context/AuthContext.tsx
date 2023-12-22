@@ -39,16 +39,36 @@ export const AuthProvider = ({children}:any) => {
         email: ""
     })
 
-    const login = async () => {
+    const login = async (email:string, password:string) => {
         try {
-            const response = await axios.post("")
-        } catch {
-            
+            const res = await axios.post(`${API_URL}/login`, {email, password})
+
+            setAuthState({
+                token: res.data.token,
+                authenticated:true
+            })
+
+            setUser({
+                first: res.data.user.first,
+                last: res.data.user.last,
+                email: res.data.user.email
+            })
+
+        } catch (e) {
+            console.log("Error during login", "e:", e)
+            return {error: true, msg:(e as any).response.data.msg}
         }
+    }
+
+
+    const logout = async () => {
         
     }
     const value = {
-        user
+        user,
+        setUser,
+        authState,
+        onLogin:login,
 
     }
     
