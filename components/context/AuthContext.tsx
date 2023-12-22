@@ -54,6 +54,13 @@ export const AuthProvider = ({children}:any) => {
                 email: res.data.user.email
             })
 
+            axios.defaults.headers.common['Authorization'] = `Bearer ${res.data.token}`
+            await SecureStore.setItemAsync(TOKEN_KEY, res.data.token)
+            // set user info token
+            axios.defaults.headers.common['Authorization'] = `Bearer ${res.data.token}`
+            await SecureStore.setItemAsync(USER_KEY, res.data.user)
+
+
         } catch (e) {
             console.log("Error during login", "e:", e)
             return {error: true, msg:(e as any).response.data.msg}
@@ -62,7 +69,16 @@ export const AuthProvider = ({children}:any) => {
 
 
     const logout = async () => {
-        
+        try {
+            console.log("logging out")
+            // delete token from storage
+            await SecureStore.deleteItemAsync(TOKEN_KEY);
+
+
+
+        } catch (e) {
+
+        }
     }
     const value = {
         user,
