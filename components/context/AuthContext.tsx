@@ -88,6 +88,14 @@ export const AuthProvider = ({children}:any) => {
             // delete user token from storage
             await SecureStore.deleteItemAsync(USER_KEY);
 
+               //update HTTP axios headers
+            axios.defaults.headers.common['Authorization'] = "";
+
+            setAuthState({
+                    token:null,
+                    authenticated:null
+                })
+            
 
 
         } catch (e) {

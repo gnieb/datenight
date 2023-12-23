@@ -20,7 +20,7 @@ const Gateway:FunctionComponent = () => {
 
   const {authState} = useAuth()
 
-  return authState? <RootNav/> :  <OutsideRootNav />
+  return authState?.authenticated? <RootNav/> :  <OutsideRootNav />
 
 }
 
