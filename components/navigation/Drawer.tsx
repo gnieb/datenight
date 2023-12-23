@@ -3,6 +3,7 @@ import { useWindowDimensions } from 'react-native';
 // import screens
 import Home from '../screens/Home';
 import FoodRoulette from '../screens/FoodRoulette';
+import Profile from '../screens/Profile';
 
 
 
@@ -24,6 +25,7 @@ const Drawer = () => {
     >
       <Drawer.Screen name="Home" component={Home} />
       <Drawer.Screen name="Food Roulette" component={FoodRoulette} />
+      <Drawer.Screen name="Profile" component={Profile} />
     </Drawer.Navigator>
   );
 }
