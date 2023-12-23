@@ -8,8 +8,8 @@ interface AuthProps {
     authState?: {token:string|null, authenticated:boolean|null };
     user: User;
     setUser?: React.Dispatch<React.SetStateAction<User>>;
-    onSignUp?: () => Promise<any>;
-    onLogin?: () => Promise<any>;
+    onSignUp?: (first:string, last:string, email:string, password:string) => Promise<any>;
+    onLogin?: (email:string, password:string) => Promise<any>;
     onLogout?: () => Promise<any> | Promise<void>;
 }
 
@@ -38,6 +38,17 @@ export const AuthProvider = ({children}:any) => {
         last:"",
         email: ""
     })
+
+    const signup = async( first:string, last:string, email:string, password:string ) => {
+        try {
+            const res = await axios.post(`${API_URL}/users`, {first, last, email, password})
+            return res
+
+        } catch (e) {
+            console.log("Error during Signup:", e)
+            return {error:true, msg:e}
+        }
+    }
 
     const login = async (email:string, password:string) => {
         try {
@@ -71,13 +82,17 @@ export const AuthProvider = ({children}:any) => {
     const logout = async () => {
         try {
             console.log("logging out")
+
             // delete token from storage
             await SecureStore.deleteItemAsync(TOKEN_KEY);
+            // delete user token from storage
+            await SecureStore.deleteItemAsync(USER_KEY);
 
 
 
         } catch (e) {
-
+            console.log("Error during login", "e:", e)
+            return {error: true, msg:(e as any).response.data.msg}
         }
     }
     const value = {
@@ -85,7 +100,8 @@ export const AuthProvider = ({children}:any) => {
         setUser,
         authState,
         onLogin:login,
-
+        onLogout:logout,
+        onSignUp: signup
     }
     
     return (
