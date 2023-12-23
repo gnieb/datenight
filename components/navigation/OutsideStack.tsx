@@ -15,7 +15,11 @@ const OutsideStack = () => {
     const Stack = createNativeStackNavigator<OutsideStackParams>();
 
     return (
-    <Stack.Navigator>
+    <Stack.Navigator
+        screenOptions={{
+            headerShown:false
+        }}
+    >
         <Stack.Screen name="OutsideDrawer" component={OutsideDrawer} />
         <Stack.Screen name="Signup" component={Signup}/>
         <Stack.Screen name="Login" component={Login}/>
