@@ -5,6 +5,7 @@ import { RootNav } from './components/navigation/RootNav';
 import SafeAreaView from 'react-native-safe-area-view';
 import { useAuth, AuthProvider } from './components/context/AuthContext';
 import { FunctionComponent } from 'react';
+import OutsideRootNav from './components/navigation/OutsideRootNav';
 
 const App: React.FC = () => {
   return (
@@ -19,7 +20,7 @@ const Gateway:FunctionComponent = () => {
 
   const {authState} = useAuth()
 
-  return authState? <RootNav/> :  
+  return authState? <RootNav/> :  <OutsideRootNav />
 
 }
 
