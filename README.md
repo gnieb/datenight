@@ -5,5 +5,9 @@ We always struggle to decide what we're doing / where we're going. Why is pickin
 
 
 
+- profile screen
+- log out
+- implement the onsignup and onlogin from auth
+
 
 

@@ -10,7 +10,7 @@ import OutsideRootNav from './components/navigation/OutsideRootNav';
 const App: React.FC = () => {
   return (
     <AuthProvider>
-      <RootNav />
+      <Gateway />
     </AuthProvider>
   );
 };
