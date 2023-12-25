@@ -69,7 +69,7 @@ export const Login:FunctionComponent= () => {
                         </View>
                         <Pressable
                         style={{margin:"auto", alignItems:"center", backgroundColor:`${colors.secondary}`, borderRadius:50, padding:10,}}
-                        onPress={() => handleSubmit}>
+                        onPress={() => handleSubmit()}>
                             <Text style={{color: `${colors.accent}`, fontWeight:"bold", fontSize:18}}>LOG IN</Text>
                         </Pressable>
                     </View>
