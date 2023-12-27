@@ -44,14 +44,15 @@ export const AuthProvider = ({children}:any) => {
             const res = await axios.post(`${API_URL}/users`, {first, last, email, password})
             return res
 
-        } catch (e) {
-            console.log("Error during Signup:", e)
+        } catch (e:any) {
+            console.error("Error during account creation:", e.response.data);
             return {error:true, msg:e}
         }
     }
 
     const login = async (email:string, password:string) => {
         try {
+            console.log("logging in...")
             const res = await axios.post(`${API_URL}/login`, {email, password})
 
             setAuthState({
@@ -62,14 +63,19 @@ export const AuthProvider = ({children}:any) => {
             setUser({
                 first: res.data.user.first,
                 last: res.data.user.last,
-                email: res.data.user.email
+                email: res.data.user.email, 
+                password: res.data.password
             })
+
+            console.log("made it past setting state for both")
 
             axios.defaults.headers.common['Authorization'] = `Bearer ${res.data.token}`
             await SecureStore.setItemAsync(TOKEN_KEY, res.data.token)
             // set user info token
             axios.defaults.headers.common['Authorization'] = `Bearer ${res.data.token}`
-            await SecureStore.setItemAsync(USER_KEY, res.data.user)
+            await SecureStore.setItemAsync(USER_KEY,  JSON.stringify(res.data.user))
+
+            return res
 
 
         } catch (e) {
