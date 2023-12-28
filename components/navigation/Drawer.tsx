@@ -24,7 +24,7 @@ const Drawer = () => {
         }}
     >
       <Drawer.Screen name="Home" component={Home} />
-      <Drawer.Screen name="Food Roulette" component={FoodRoulette} />
+      <Drawer.Screen name="Roulette" component={FoodRoulette} />
       <Drawer.Screen name="Profile" component={Profile} />
     </Drawer.Navigator>
   );
