@@ -3,6 +3,7 @@ import { Container } from "../shared/container";
 import { Text, Platform, TouchableWithoutFeedback, StyleSheet, View, TextInput, Pressable, KeyboardAvoidingView, Keyboard } from "react-native";
 import { colors } from "../shared/colors";
 import { Formik } from 'formik';
+import { string } from "yup";
 
 
 
@@ -14,12 +15,13 @@ const FoodRoulette:FunctionComponent = () => {
         third:""
     }
 
-    const [randomChoice, setRandomChoice] = useState("")
+    const [randomChoice, setRandomChoice] = useState<String>("")
     const handleRoulette = (vals:any) => {
         // Object.values(vals) is an array of all the values in the values oject submitted thru formik
         const choices = Object.values(vals)
         const random = choices[Math.floor(Math.random() * (choices.length))]
         console.log(random )
+        setRandomChoice(random)
         // console.log(Object.values(vals))
     }
 
@@ -86,8 +88,10 @@ const FoodRoulette:FunctionComponent = () => {
                 </View>
                 )}
                 </Formik>
-                <View>
-                    <Text>FOOD PLACE HERE</Text>
+                <View style={styles.randomChoiceView}>
+                    <Text style={styles.randomChoice}>WHERE ARE WE GOING?</Text>
+                    <Text 
+                    style={styles.randomChoice}>{randomChoice}</Text>
                 </View>
                 </Container>
             </TouchableWithoutFeedback>
@@ -133,5 +137,13 @@ const styles = StyleSheet.create({
         borderRadius: 50,
         padding: 10,
         color:'white',
+     }, 
+     randomChoiceView: {
+        paddingTop:40
+     },
+     randomChoice: {
+        fontWeight:"bold",
+        fontSize: 30,
+        color: `${colors.accent}`
      }
 })
