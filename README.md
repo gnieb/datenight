@@ -8,7 +8,7 @@ We always struggle to decide what we're doing / where we're going. Why is pickin
 - profile screen
 - log out
 - implement the onsignup and onlogin from auth
-- add ability to link up with your partner's account
+- add ability to link up with your partner's account, make a chat feature
 
 
 ## Features in progress

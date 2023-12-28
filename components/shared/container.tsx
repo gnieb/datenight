@@ -7,6 +7,7 @@ background-color: ${colors.base};
 width: 100%;
 flex:1;
 justify-content:center;
+align-items: center;
 `
 
 export const ScreenWidth = Dimensions.get("screen").width;

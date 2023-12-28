@@ -4,5 +4,6 @@ export type User = {
     email: string;
     password?:string;
     id?: number;
+    partner?:User;
 
 }

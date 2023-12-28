@@ -13,7 +13,7 @@ const Home: FunctionComponent = () => {
         
     <Container>
         <View style={styles.container}>
-            <Text style={{color:"white"}}>WELCOME {user.first}</Text>
+            <Text style={{color:"white"}}>WELCOME {user.first.toUpperCase()}</Text>
         </View>
     </Container>
        
@@ -26,6 +26,6 @@ export default Home;
 const styles = StyleSheet.create({
     container: {
         flex:1, 
-        justifyContent: "center"
+        justifyContent: "center",
     }
 })

@@ -6,9 +6,9 @@ import { useAuth } from "../context/AuthContext";
 
 const Profile:FunctionComponent = () => {
 
-    const {onLogout, authState} = useAuth()
+    const {onLogout, authState, user} = useAuth()
 
-    console.log(authState)
+    
 
     return  (
         <Container>
