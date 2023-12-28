@@ -67,8 +67,6 @@ export const AuthProvider = ({children}:any) => {
                 password: res.data.password
             })
 
-            console.log("made it past setting state for both")
-
             axios.defaults.headers.common['Authorization'] = `Bearer ${res.data.token}`
             await SecureStore.setItemAsync(TOKEN_KEY, res.data.token)
             // set user info token

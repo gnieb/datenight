@@ -37,7 +37,6 @@ export const Login:FunctionComponent= () => {
                             password: '', 
                         }}
                         onSubmit={(values) => {
-                            console.log(values)
                             onLogin!(values.email, values.password)
                         }
                             
