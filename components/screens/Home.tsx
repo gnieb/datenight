@@ -1,17 +1,20 @@
 import { FunctionComponent } from "react";
 import { Container } from "../shared/container";
-import { Text } from "react-native";
-import { SafeAreaView } from "react-native";
+import { Text, View } from "react-native";
+import { SafeAreaView, StyleSheet } from "react-native";
+import { useAuth } from "../context/AuthContext";
 
 
 const Home: FunctionComponent = () => {
 
+    const {user} = useAuth();
+
     return (
         
     <Container>
-        <SafeAreaView>
-            <Text style={{color:"white"}}>WELCOME</Text>
-        </SafeAreaView> 
+        <View style={styles.container}>
+            <Text style={{color:"white"}}>WELCOME {user.first}</Text>
+        </View>
     </Container>
        
     )
@@ -19,3 +22,10 @@ const Home: FunctionComponent = () => {
 }
 
 export default Home;
+
+const styles = StyleSheet.create({
+    container: {
+        flex:1, 
+        justifyContent: "center"
+    }
+})

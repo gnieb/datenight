@@ -36,8 +36,44 @@ export const AuthProvider = ({children}:any) => {
     const [user, setUser] = useState<User>({
         first:"",
         last:"",
-        email: ""
+        email: "",
+        password: ""
     })
+
+
+    useEffect(() => {
+        const loadToken = async () => {
+            try {
+                const authToken = await SecureStore.getItemAsync(TOKEN_KEY);
+                const userToken = await SecureStore.getItemAsync(USER_KEY);
+
+                if (authToken) {
+                    setAuthState({
+                        token:authToken,
+                        authenticated: true
+                    })
+                }
+
+                if (USER_KEY) {
+                    
+                    const userInfo = JSON.parse(userToken!)
+                    setUser({
+                        first:userInfo.first,
+                        last:userInfo.last,
+                        email: userInfo.email,
+                        password: userInfo.password
+                    })
+                }
+
+            } catch (e) {
+                console.log("Error during loading token", "e:", e)
+                return {error: true, msg:(e as any).response.data.msg}
+            }
+        }
+
+        loadToken();
+    }, [])
+
 
     const signup = async( first:string, last:string, email:string, password:string ) => {
         try {
@@ -75,13 +111,11 @@ export const AuthProvider = ({children}:any) => {
 
             return res
 
-
         } catch (e) {
             console.log("Error during login", "e:", e)
             return {error: true, msg:(e as any).response.data.msg}
         }
     }
-
 
     const logout = async () => {
         try {
@@ -91,16 +125,13 @@ export const AuthProvider = ({children}:any) => {
             await SecureStore.deleteItemAsync(TOKEN_KEY);
             // delete user token from storage
             await SecureStore.deleteItemAsync(USER_KEY);
-
-               //update HTTP axios headers
+            // update HTTP axios headers
             axios.defaults.headers.common['Authorization'] = "";
 
             setAuthState({
                     token:null,
                     authenticated:null
                 })
-            
-
 
         } catch (e) {
             console.log("Error during login", "e:", e)

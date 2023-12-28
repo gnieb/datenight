@@ -38,9 +38,7 @@ export const Login:FunctionComponent= () => {
                         }}
                         onSubmit={(values) => {
                             onLogin!(values.email, values.password)
-                        }
-                            
-                        }
+                        }}
                         validationSchema={loginSchema}
                     >
                     {({ handleChange, handleBlur, handleSubmit, values }) => (
