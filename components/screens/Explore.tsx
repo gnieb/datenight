@@ -8,7 +8,10 @@ import { Container } from "../shared/container";
     return (
         
         <Container>
-
+            <View>
+                <Text>Explore</Text>
+                <Text>things will be here</Text>
+            </View>
         </Container>
     )
 }
