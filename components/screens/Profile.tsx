@@ -1,8 +1,10 @@
 import { FunctionComponent, useState, useEffect } from "react";
-import { SafeAreaView, Text, Pressable, StyleSheet, View, Modal, Alert } from "react-native";
+import { SafeAreaView, Text, TextInput, Pressable, StyleSheet, View, Modal, Alert } from "react-native";
 import { Container } from "../shared/container";
 import { useAuth } from "../context/AuthContext";
 import { Formik } from 'formik';
+import { colors } from "../shared/colors";
+import * as Yup from 'yup';
 
 
 const Profile:FunctionComponent = () => {
@@ -13,6 +15,14 @@ const Profile:FunctionComponent = () => {
     const handleOpen = () => {
         setShowModal(true);
     }
+
+    const initialValues ={
+        partnerUser: "",
+    }
+
+    const partnerSchema = Yup.object().shape({
+        partnerUser: Yup.string().email("Not a valid email address").required("Please add your partner's email to connect"),
+    })
 
 
     return  (
@@ -32,6 +42,43 @@ const Profile:FunctionComponent = () => {
                          {/* this is the modal: */}
                     <View style={styles.modalView}>
                         <Text style={styles.modalText}>Hello World!</Text>
+
+                        {/* formik modal */}
+
+                        <Formik
+                initialValues={initialValues}
+                onSubmit={(values, {resetForm}) =>  {
+                    console.log(values)
+                    resetForm({values: initialValues})
+                }
+                }
+                validationSchema={partnerSchema}
+                >
+                {({ handleChange, handleBlur, handleSubmit, values }) => (
+                <View style={styles.form}>
+                <View style={styles.formContainer}>
+                <View style={styles.inputWrapper}>
+                    <TextInput
+                    style={styles.inputStyle}
+                    onChangeText={handleChange('partnerUser')}
+                    onBlur={handleBlur('partnerUser')}
+                    value={values.partnerUser}
+                    placeholder="first name..."
+                    />
+                </View>
+                
+                    <Pressable 
+                    onPress={() => handleSubmit()} 
+                    style={{margin:"auto", alignItems:"center", backgroundColor:`${colors.secondary}`, borderRadius:50, padding:10,}}
+                >
+                    <Text style={{color: `${colors.accent}`, fontWeight:"bold", fontSize:18,}}>CREATE ACCOUNT</Text>
+                </Pressable>
+                </View>
+                </View>
+                )}
+                </Formik>
+
+
                         <Pressable
                         style={[styles.button, styles.buttonClose]}
                         onPress={() => setShowModal(!showModal)}>
@@ -116,5 +163,36 @@ const styles = StyleSheet.create({
         borderRadius:50,
         padding: 8, 
         margin: 10
-    }
+    },
+    form: {
+        alignItems: 'center'
+    },
+    formContainer: {
+        padding: 20,
+        marginTop: 50,
+        borderRadius: 50,
+        width: '80%',
+        backgroundColor:`${colors.primary}`
+    },
+
+    title : {
+        color: `white`,
+        fontSize: 42,
+        lineHeight: 60,
+        fontWeight: 'bold',
+        marginBottom: 15,
+        opacity: 1,
+     },
+     inputWrapper: {
+        marginBottom: 15,
+     },
+     inputStyle: {
+        borderColor: 'white',
+        fontSize: 20,
+        fontWeight: 'bold',
+        borderWidth: 1,
+        borderRadius: 50,
+        padding: 10,
+        color:'white',
+     }
   });
