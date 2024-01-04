@@ -2,6 +2,7 @@ import { FunctionComponent, useState, useEffect } from "react";
 import { SafeAreaView, Text, Pressable, StyleSheet, View, Modal, Alert } from "react-native";
 import { Container } from "../shared/container";
 import { useAuth } from "../context/AuthContext";
+import { Formik } from 'formik';
 
 
 const Profile:FunctionComponent = () => {
@@ -16,8 +17,7 @@ const Profile:FunctionComponent = () => {
 
     return  (
         <Container>
-            <SafeAreaView>
-                
+            
             <View style={styles.centeredView}>
                 <Modal
                     animationType="slide"
@@ -28,6 +28,8 @@ const Profile:FunctionComponent = () => {
                     setShowModal(!showModal);
                     }}>
                     <View style={styles.centeredView}>
+
+                         {/* this is the modal: */}
                     <View style={styles.modalView}>
                         <Text style={styles.modalText}>Hello World!</Text>
                         <Pressable
@@ -41,15 +43,15 @@ const Profile:FunctionComponent = () => {
                         <Text style={styles.textStyle}>Cancel</Text>
                         </Pressable>
                     </View>
+                    {/* end of modal */}
+
                     </View>
                 </Modal>
                 <Pressable
                     style={[styles.button, styles.buttonOpen]}
                     onPress={() => setShowModal(true)}>
-                    <Text style={styles.textStyle}>Show Modal</Text>
+                    <Text style={styles.textStyle}>Connect to your partner</Text>
                 </Pressable>
-                </View>
-     
                 <Pressable 
                 onPress={()=>  {
                     onLogout
@@ -59,8 +61,7 @@ const Profile:FunctionComponent = () => {
                 style={styles.logout} >
                     <Text style={{fontSize:18, fontWeight:"bold"}}>LOG OUT</Text>
                 </Pressable>
-            
-            </SafeAreaView>
+            </View>
         </Container>
     )
 }
@@ -113,6 +114,7 @@ const styles = StyleSheet.create({
     logout : {
         backgroundColor: "white",
         borderRadius:50,
-        padding: 8
+        padding: 8, 
+        margin: 10
     }
   });
