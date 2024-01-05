@@ -5,6 +5,7 @@ import { useAuth } from "../context/AuthContext";
 import { Formik } from 'formik';
 import { colors } from "../shared/colors";
 import * as Yup from 'yup';
+import { API_URL } from "../../assets/API";
 
 
 const Profile:FunctionComponent = () => {
@@ -23,6 +24,38 @@ const Profile:FunctionComponent = () => {
     const partnerSchema = Yup.object().shape({
         partnerUser: Yup.string().email("Not a valid email address").required("Please add your partner's email to connect"),
     })
+
+    const findPartner = async (email:string) => {
+        try {
+            const res = (await fetch(`${API_URL}/findpartner`, {
+                method:"POST",
+                headers:{"Content-Type":"application/json"},
+                body:JSON.stringify(email)
+            }))
+            const partner = await res.json()
+            return partner.user.id
+        } catch (e) {
+            console.log("error finding your partner with this email address. Please try again.")
+            return {error: true, msg: (e as any).response.data.msg}
+        }
+    }
+
+    const handleConnect = async (partner:number) => {
+        try {
+            const res = await fetch(`${API_URL}/users/${user.id}`, {
+                method:"POST",
+                headers:{"Content-Type":"application/json"},
+                body: JSON.stringify()
+            })
+            const 
+
+
+
+        } catch (e) {
+            console.error("Error connecting to partner:")
+            return {error: true, msg:(e as any).response.data.msg}
+        }
+    }
 
 
     return  (
@@ -70,7 +103,7 @@ const Profile:FunctionComponent = () => {
                 ) : null}
                     <Pressable 
                     onPress={() => handleSubmit()} 
-                    style={{margin:"auto", alignItems:"center", backgroundColor:`${colors.secondary}`, borderRadius:50, padding:10, margin:5}}
+                    style={{ alignItems:"center", backgroundColor:`${colors.secondary}`, borderRadius:50, padding:10, marginBottom:10}}
                 >
                     <Text style={{color: `${colors.accent}`, fontWeight:"bold", fontSize:18, }}>CONNECT TO PARTNER</Text>
                 </Pressable>
