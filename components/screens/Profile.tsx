@@ -41,8 +41,6 @@ const Profile:FunctionComponent = () => {
 
                          {/* this is the modal: */}
                     <View style={styles.modalView}>
-                        <Text style={styles.modalText}>Hello World!</Text>
-
                         {/* formik modal */}
 
                         <Formik
@@ -56,36 +54,30 @@ const Profile:FunctionComponent = () => {
                 >
                 {({ handleChange, handleBlur, handleSubmit, values, errors, touched }) => (
                 <View style={styles.form}>
-                <View style={styles.formContainer}>
+                {/* <View style={styles.formContainer}> */}
                 <View style={styles.inputWrapper}>
                     <TextInput
                     style={styles.inputStyle}
                     onChangeText={handleChange('partnerUser')}
                     onBlur={handleBlur('partnerUser')}
                     value={values.partnerUser}
-                    placeholder="your partner's email"
+                    placeholder="partner's email..."
+                    placeholderTextColor={colors.secondary}
                     />
                 </View>
                 {errors.partnerUser && touched.partnerUser ? (
-                  <Text style={{color:"white", fontWeight:"900", fontStyle:"italic", width:"100%",}}>{errors.partnerUser}</Text>
+                  <Text style={{color:`${colors.accent}`, fontWeight:"900", fontStyle:"italic", width:"100%",}}>{errors.partnerUser}</Text>
                 ) : null}
                     <Pressable 
                     onPress={() => handleSubmit()} 
-                    style={{margin:"auto", alignItems:"center", backgroundColor:`${colors.secondary}`, borderRadius:50, padding:10,}}
+                    style={{margin:"auto", alignItems:"center", backgroundColor:`${colors.secondary}`, borderRadius:50, padding:10, margin:5}}
                 >
-                    <Text style={{color: `${colors.accent}`, fontWeight:"bold", fontSize:18,}}>CREATE ACCOUNT</Text>
+                    <Text style={{color: `${colors.accent}`, fontWeight:"bold", fontSize:18, }}>CONNECT TO PARTNER</Text>
                 </Pressable>
                 </View>
-                </View>
+                // </View>
                 )}
                 </Formik>
-
-
-                        <Pressable
-                        style={[styles.button, styles.buttonClose]}
-                        onPress={() => setShowModal(!showModal)}>
-                        <Text style={styles.textStyle}>Connect</Text>
-                        </Pressable>
                         
                         <Pressable
                         style={[styles.button, styles.buttonClose]}
@@ -94,7 +86,6 @@ const Profile:FunctionComponent = () => {
                         </Pressable>
                     </View>
                     {/* end of modal */}
-
                     </View>
                 </Modal>
                 <Pressable
@@ -128,8 +119,9 @@ const styles = StyleSheet.create({
     },
     modalView: {
       margin: 20,
+      width: '90%',
       backgroundColor: 'white',
-      borderRadius: 20,
+      borderRadius: 50,
       padding: 35,
       alignItems: 'center',
       shadowColor: '#000',
@@ -150,7 +142,7 @@ const styles = StyleSheet.create({
       backgroundColor: '#F194FF',
     },
     buttonClose: {
-      backgroundColor: '#2196F3',
+      backgroundColor: 'black',
     },
     textStyle: {
       color: 'white',
@@ -168,15 +160,16 @@ const styles = StyleSheet.create({
         margin: 10
     },
     form: {
-        alignItems: 'center'
+        alignItems: 'center',
+        width:'98%'
     },
-    formContainer: {
-        padding: 20,
-        marginTop: 50,
-        borderRadius: 50,
-        width: '80%',
-        backgroundColor:`${colors.primary}`
-    },
+    // formContainer: {
+    //     padding: 20,
+    //     marginTop: 50,
+    //     borderRadius: 50,
+    //     width: '80%',
+    //     backgroundColor:`${colors.primary}`
+    // },
 
     title : {
         color: `white`,
@@ -187,7 +180,7 @@ const styles = StyleSheet.create({
         opacity: 1,
      },
      inputWrapper: {
-        marginBottom: 15,
+        marginBottom: 10,
      },
      inputStyle: {
         borderColor: 'white',
@@ -195,7 +188,9 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         borderWidth: 1,
         borderRadius: 50,
-        padding: 10,
+        paddingHorizontal: 20,
+        paddingVertical:10,
         color:'white',
+        backgroundColor:`${colors.accent}`
      }
   });
