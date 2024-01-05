@@ -54,7 +54,7 @@ const Profile:FunctionComponent = () => {
                 }
                 validationSchema={partnerSchema}
                 >
-                {({ handleChange, handleBlur, handleSubmit, values }) => (
+                {({ handleChange, handleBlur, handleSubmit, values, errors, touched }) => (
                 <View style={styles.form}>
                 <View style={styles.formContainer}>
                 <View style={styles.inputWrapper}>
@@ -63,10 +63,12 @@ const Profile:FunctionComponent = () => {
                     onChangeText={handleChange('partnerUser')}
                     onBlur={handleBlur('partnerUser')}
                     value={values.partnerUser}
-                    placeholder="first name..."
+                    placeholder="your partner's email"
                     />
                 </View>
-                
+                {errors.partnerUser && touched.partnerUser ? (
+                  <Text style={{color:"white", fontWeight:"900", fontStyle:"italic", width:"100%",}}>{errors.partnerUser}</Text>
+                ) : null}
                     <Pressable 
                     onPress={() => handleSubmit()} 
                     style={{margin:"auto", alignItems:"center", backgroundColor:`${colors.secondary}`, borderRadius:50, padding:10,}}
@@ -84,6 +86,7 @@ const Profile:FunctionComponent = () => {
                         onPress={() => setShowModal(!showModal)}>
                         <Text style={styles.textStyle}>Connect</Text>
                         </Pressable>
+                        
                         <Pressable
                         style={[styles.button, styles.buttonClose]}
                         onPress={() => setShowModal(!showModal)}>
