@@ -33,23 +33,22 @@ const Profile:FunctionComponent = () => {
                 body:JSON.stringify(email)
             }))
             const partner = await res.json()
-            return partner.user.id
+            return {userId : partner.user.id}
         } catch (e) {
             console.log("error finding your partner with this email address. Please try again.")
             return {error: true, msg: (e as any).response.data.msg}
         }
     }
 
-    const handleConnect = async (partner:number) => {
+    const handleConnect = async (partner:{userId:number}) => {
+        // this will post to the user's record, an associated user id
         try {
             const res = await fetch(`${API_URL}/users/${user.id}`, {
                 method:"POST",
                 headers:{"Content-Type":"application/json"},
-                body: JSON.stringify()
+                body: JSON.stringify(partner)
             })
-            const 
-
-
+            console.log("Success! User partner associated")
 
         } catch (e) {
             console.error("Error connecting to partner:")
