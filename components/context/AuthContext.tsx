@@ -130,8 +130,14 @@ export const AuthProvider = ({children}:any) => {
 
             setAuthState({
                     token:null,
-                    authenticated:null
+                    authenticated:false
                 })
+            setUser({
+                first:"",
+                last:"",
+                email: "",
+                password: ""
+            })
 
         } catch (e) {
             console.log("Error during login", "e:", e)

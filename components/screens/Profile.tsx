@@ -127,10 +127,9 @@ const Profile:FunctionComponent = () => {
                 </Pressable>
                 <Pressable 
                 onPress={()=>  {
-                    onLogout
+                    onLogout!()
                     console.log("logging out")
-                }}
-                
+                }} 
                 style={styles.logout} >
                     <Text style={{fontSize:18, fontWeight:"bold"}}>LOG OUT</Text>
                 </Pressable>
