@@ -5,6 +5,7 @@ import Home from '../screens/Home';
 import FoodRoulette from '../screens/FoodRoulette';
 import Profile from '../screens/Profile';
 import Explore from '../screens/Explore';
+import WhosPaying from '../screens/WhosPaying';
 
 
 
@@ -27,7 +28,9 @@ const Drawer = () => {
       <Drawer.Screen name="Home" component={Home} />
       <Drawer.Screen name="Roulette" component={FoodRoulette} />
       <Drawer.Screen name="Explore" component={Explore} />
+      <Drawer.Screen name="WhosPaying" component={WhosPaying} />
       <Drawer.Screen name="Profile" component={Profile} />
+      
     </Drawer.Navigator>
   );
 }

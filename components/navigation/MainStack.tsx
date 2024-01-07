@@ -5,12 +5,14 @@ import Drawer from "./Drawer";
 import Home from "../screens/Home";
 import FoodRoulette from "../screens/FoodRoulette";
 import Profile from "../screens/Profile";
+import WhosPaying from "../screens/WhosPaying";
 
 export type MainStackParams = {
     Drawer: undefined;
     Home: undefined;
     FoodRoulette: undefined;
     Profile: undefined;
+    WhosPaying: undefined;
 }
 
 
@@ -29,6 +31,7 @@ const MainStack = () => {
             <Stack.Screen name="Drawer" component={Drawer} />
             <Stack.Screen name="Home" component={Home} />
             <Stack.Screen name="FoodRoulette" component={FoodRoulette}/>
+            <Stack.Screen name="WhosPaying" component={WhosPaying} />
             <Stack.Screen name="Profile" component={Profile} />
         </Stack.Navigator>
     )
