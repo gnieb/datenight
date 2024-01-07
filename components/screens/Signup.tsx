@@ -20,7 +20,6 @@ const signupSchema = Yup.object().shape({
 export const Signup:FunctionComponent = () => {
     const {onSignUp} = useAuth()
 
-
     const initialValues = { 
         firstName:'',
         lastName:'',
@@ -29,9 +28,7 @@ export const Signup:FunctionComponent = () => {
         confirmPassword: '',
         }
 
-
     return (
-        
         <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         style={styles.container}>
@@ -40,7 +37,7 @@ export const Signup:FunctionComponent = () => {
                 <Formik
                 initialValues={initialValues}
                 onSubmit={(values, {resetForm}) =>  {
-                    console.log(values)
+                    console.log("Signup ln43:")
                     onSignUp!(values.firstName, values.lastName, values.email, values.password)
                     resetForm({values: initialValues})
                 }

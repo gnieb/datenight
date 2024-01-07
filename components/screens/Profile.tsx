@@ -12,6 +12,7 @@ const Profile:FunctionComponent = () => {
 
     const {onLogout, user} = useAuth();
     const [showModal, setShowModal] = useState<boolean>(false);
+    
 
     const handleOpen = () => {
         setShowModal(true);
@@ -33,6 +34,7 @@ const Profile:FunctionComponent = () => {
                 body:JSON.stringify(email)
             }))
             const partner = await res.json()
+            console.log(partner)
             return {userId : partner.user.id}
         } catch (e) {
             console.log("error finding your partner with this email address. Please try again.")
@@ -79,6 +81,7 @@ const Profile:FunctionComponent = () => {
                 initialValues={initialValues}
                 onSubmit={(values, {resetForm}) =>  {
                     console.log(values)
+                    console.log(findPartner(values.partnerUser))
                     resetForm({values: initialValues})
                 }
                 }
@@ -101,7 +104,7 @@ const Profile:FunctionComponent = () => {
                   <Text style={{color:`${colors.accent}`, fontWeight:"900", fontStyle:"italic", width:"100%",}}>{errors.partnerUser}</Text>
                 ) : null}
                     <Pressable 
-                    onPress={() => handleSubmit()} 
+                    onPress={() => {handleSubmit()}} 
                     style={{ alignItems:"center", backgroundColor:`${colors.secondary}`, borderRadius:50, padding:10, marginBottom:10}}
                 >
                     <Text style={{color: `${colors.accent}`, fontWeight:"bold", fontSize:18, }}>CONNECT TO PARTNER</Text>
@@ -110,6 +113,10 @@ const Profile:FunctionComponent = () => {
                 // </View>
                 )}
                 </Formik>
+                <View>
+                    <Text></Text>
+
+                </View>
                         
                         <Pressable
                         style={[styles.button, styles.buttonClose]}

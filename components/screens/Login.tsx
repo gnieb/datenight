@@ -25,7 +25,7 @@ export const Login:FunctionComponent= () => {
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       style={styles.container}>
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-            <Container>
+            {/* <Container> */}
                     <ImageBackground
                         source={walking}
                         resizeMode="cover" 
@@ -74,7 +74,7 @@ export const Login:FunctionComponent= () => {
                     )}
                     </Formik>
                     </ImageBackground>
-            </Container>
+            {/* </Container> */}
             </TouchableWithoutFeedback>
         </KeyboardAvoidingView>
     )
