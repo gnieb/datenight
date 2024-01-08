@@ -35,9 +35,9 @@ const WhosPaying:FunctionComponent = () => {
              </Pressable>
            {isLoading ? <ActivityIndicator size="large" color={colors.accent} /> : <></>} 
            <View>
-             {options.map(o => {
+             {options.map((o, i) => {
                 return (
-                    <Text>{o}</Text>
+                    <Text key={i}>{o}</Text>
                 )
              })}
            </View>
