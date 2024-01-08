@@ -8,7 +8,7 @@ import { Formik } from 'formik';
 const WhosPaying:FunctionComponent = () => {
     const [payPerson, setPayPerson] = useState<String>("");
     const [isLoading, setIsLoading] = useState<boolean>(false)
-    const [options, setOptions] = useState<String[]>(["noah", "sam", "jack", "grace"]);
+    const [options, setOptions] = useState<String[]>([]);
 
     const addAnOption = (newOption:string) => {
         setOptions([...options, newOption ])
