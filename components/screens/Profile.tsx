@@ -50,9 +50,7 @@ const Profile:FunctionComponent = () => {
                 body:JSON.stringify({partner_id:user.id})
                 // this is actually going to EDIT THE PARTNER first. giving the users ID
             }))
-            const partner = await res.json()
-            console.log(partner)
-            return partner
+            console.log("patch success!!!!!")
         } catch (e) {
             console.log("error finding your partner with this email address. Please try again.")
             return {error: true, msg: (e as any).response.data.msg}
