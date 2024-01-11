@@ -42,6 +42,25 @@ const Profile:FunctionComponent = () => {
         }
     }
 
+    const testPartner = async (email:String) => {
+        try {
+            const res = (await fetch(`${API_URL}/test/${email}`, {
+                method:"PATCH",
+                headers:{"Content-Type":"application/json"},
+                body:JSON.stringify({partner_id:user.id})
+                // this is actually going to EDIT THE PARTNER first. giving the users ID
+            }))
+            const partner = await res.json()
+            console.log(partner)
+            return partner
+        } catch (e) {
+            console.log("error finding your partner with this email address. Please try again.")
+            return {error: true, msg: (e as any).response.data.msg}
+        }
+    }
+
+    
+
     const handleConnect = async (partner:{userId:number}) => {
         // this will post to the user's record, an associated user id
         try {
@@ -81,7 +100,9 @@ const Profile:FunctionComponent = () => {
                 initialValues={initialValues}
                 onSubmit={(values, {resetForm}) =>  {
                     console.log(values)
-                    console.log(findPartner(values.partnerUser))
+
+                    testPartner(values.partnerUser)
+                    // console.log(findPartner(values.partnerUser))
                     resetForm({values: initialValues})
                 }
                 }
@@ -107,7 +128,7 @@ const Profile:FunctionComponent = () => {
                     onPress={() => {handleSubmit()}} 
                     style={{ alignItems:"center", backgroundColor:`${colors.secondary}`, borderRadius:50, padding:10, marginBottom:10}}
                 >
-                    <Text style={{color: `${colors.accent}`, fontWeight:"bold", fontSize:18, }}>CONNECT TO PARTNER</Text>
+                    <Text style={{color: `${colors.accent}`, fontWeight:"bold", fontSize:18, }}>SEND CONNECT REQUEST</Text>
                 </Pressable>
                 </View>
                 // </View>

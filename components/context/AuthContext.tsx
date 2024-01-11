@@ -37,7 +37,8 @@ export const AuthProvider = ({children}:any) => {
         first:"",
         last:"",
         email: "",
-        password: ""
+        password: "",
+        id: undefined 
     })
 
 
@@ -61,7 +62,8 @@ export const AuthProvider = ({children}:any) => {
                         first:userInfo.first,
                         last:userInfo.last,
                         email: userInfo.email,
-                        password: userInfo.password
+                        password: userInfo.password, 
+                        id: userInfo.id
                     })
                 }
 
