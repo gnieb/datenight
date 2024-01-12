@@ -38,7 +38,8 @@ export const AuthProvider = ({children}:any) => {
         last:"",
         email: "",
         password: "",
-        id: undefined 
+        id: undefined,
+        partner:undefined 
     })
 
 
@@ -58,12 +59,14 @@ export const AuthProvider = ({children}:any) => {
                 if (USER_KEY) {
                     
                     const userInfo = JSON.parse(userToken!)
+                    console.log("userInfo from token:", userInfo)
                     setUser({
                         first:userInfo.first,
                         last:userInfo.last,
                         email: userInfo.email,
                         password: userInfo.password, 
-                        id: userInfo.id
+                        id: userInfo.id,
+                        partner:userInfo.partner
                     })
                 }
 
@@ -97,12 +100,15 @@ export const AuthProvider = ({children}:any) => {
                 token: res.data.token,
                 authenticated:true
             })
+            console.log("result data",res.data)
 
             setUser({
                 first: res.data.user.first,
                 last: res.data.user.last,
                 email: res.data.user.email, 
-                password: res.data.password
+                password: res.data.user.password,
+                id: res.data.user.id,
+                partner: res.data.user.partner
             })
 
             axios.defaults.headers.common['Authorization'] = `Bearer ${res.data.token}`
@@ -138,7 +144,9 @@ export const AuthProvider = ({children}:any) => {
                 first:"",
                 last:"",
                 email: "",
-                password: ""
+                password: "",
+                id:undefined,
+                partner:undefined
             })
 
         } catch (e) {

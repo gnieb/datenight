@@ -75,11 +75,20 @@ const Profile:FunctionComponent = () => {
         }
     }
 
+    // how canI get the user's partner? 
+    console.log(user.partner?.first)
+
 
     return  (
         <Container>
             
             <View style={styles.centeredView}>
+                <View>
+                    <Text
+                    style={styles.partnerName}>
+                        {user.partner?.first}
+                    </Text>
+                </View>
                 <Modal
                     animationType="slide"
                     transparent={true}
@@ -249,5 +258,10 @@ const styles = StyleSheet.create({
         paddingVertical:10,
         color:'white',
         backgroundColor:`${colors.accent}`
+     },
+     partnerName : {
+        color:"white",
+        fontWeight: "bold",
+        margin:10
      }
   });
