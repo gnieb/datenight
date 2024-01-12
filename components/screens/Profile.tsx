@@ -47,7 +47,7 @@ const Profile:FunctionComponent = () => {
             const res = (await fetch(`${API_URL}/test/${email}`, {
                 method:"PATCH",
                 headers:{"Content-Type":"application/json"},
-                body:JSON.stringify({partner_id:user.id})
+                body:JSON.stringify({partner_id : user.id})
                 // this is actually going to EDIT THE PARTNER first. giving the users ID
             }))
             console.log("patch success!!!!!")
