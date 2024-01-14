@@ -86,7 +86,7 @@ const Profile:FunctionComponent = () => {
                 <View>
                     <Text
                     style={styles.partnerName}>
-                        {user.partner?.first}
+                       My Partner - {user.partner?.first.toUpperCase()}
                     </Text>
                 </View>
                 <Modal
@@ -262,6 +262,7 @@ const styles = StyleSheet.create({
      partnerName : {
         color:"white",
         fontWeight: "bold",
-        margin:10
+        margin:10,
+        fontStyle: "italic"
      }
   });
