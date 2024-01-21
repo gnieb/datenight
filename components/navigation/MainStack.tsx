@@ -7,6 +7,7 @@ import FoodRoulette from "../screens/FoodRoulette";
 import Profile from "../screens/Profile";
 import WhosPaying from "../screens/WhosPaying";
 import Chat from "../screens/Chat";
+import Explore from "../screens/Explore";
 
 export type MainStackParams = {
     Drawer: undefined;
@@ -15,6 +16,7 @@ export type MainStackParams = {
     Profile: undefined;
     WhosPaying: undefined;
     Chat:undefined;
+    Explore: undefined
 }
 
 
@@ -32,6 +34,7 @@ const MainStack = () => {
             {/* screens here  */}
             <Stack.Screen name="Drawer" component={Drawer} />
             <Stack.Screen name="Home" component={Home} />
+            <Stack.Screen name="Explore" component={Explore} />
             <Stack.Screen name="FoodRoulette" component={FoodRoulette}/>
             <Stack.Screen name="WhosPaying" component={WhosPaying} />
             <Stack.Screen name="Chat" component={Chat} />
