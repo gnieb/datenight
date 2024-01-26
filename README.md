@@ -14,5 +14,19 @@ We always struggle to decide what we're doing / where we're going. Why is pickin
 - Roulette - let the app take the stress out of choosing between several options. Submit your top three choices, and the app will do the rest
 - Who's Paying? Skip the fight over it. Fair is fair. Maybe it's just you and your partner, or maybe you're out with friends! Add as many people as you want to this feature and let it do the work for you.
 
+## Usage
+* How to open the console in ios development simulator?
+```sh
+npx react-native log-ios 
+```
 
+* Start Expo
+```sh
+npx expo start
+i - run ios
+```
+* Start Expo with clear cache
+```sh
+npx expo start -c 
+```
 
