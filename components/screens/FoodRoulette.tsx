@@ -8,6 +8,7 @@ import { string } from "yup";
 
 
 const FoodRoulette:FunctionComponent = () => {
+    const [options, setOptions] = useState<String[]>(["first thing", "second thing"])
 
     const initialVals = {
         first: "",
@@ -88,6 +89,17 @@ const FoodRoulette:FunctionComponent = () => {
                 </View>
                 )}
                 </Formik>
+                <View>
+                    {options.map((o,i) => {
+                        return (
+                        <View>
+                            <Text key={i}>
+                                {o.toUpperCase()}
+                            </Text>
+                        </View>
+                        )
+                    })}
+                </View>
                 <View style={styles.randomChoiceView}>
                     <Text style={styles.randomChoice}>WHERE ARE WE GOING?</Text>
                     <Text 
