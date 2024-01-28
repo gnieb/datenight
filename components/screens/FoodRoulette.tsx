@@ -24,6 +24,10 @@ const FoodRoulette:FunctionComponent = () => {
         // console.log(Object.values(vals))
     }
 
+    const addOption = (val:string) => {
+        setOptions([...options, val])
+    }
+
 
     return(
         <KeyboardAvoidingView
@@ -35,7 +39,7 @@ const FoodRoulette:FunctionComponent = () => {
                 initialValues={initialVals}
                 onSubmit={(values, {resetForm}) =>  {
                     console.log(values)
-                    handleRoulette(values)
+                    addOption(values.option)
                     resetForm({values: initialVals})
                 }}
                 >
