@@ -11,9 +11,7 @@ const FoodRoulette:FunctionComponent = () => {
     const [options, setOptions] = useState<String[]>(["first thing", "second thing"])
 
     const initialVals = {
-        first: "",
-        second:"",
-        third:""
+        option: "",
     }
 
     const [randomChoice, setRandomChoice] = useState<String>("")
@@ -39,10 +37,7 @@ const FoodRoulette:FunctionComponent = () => {
                     console.log(values)
                     handleRoulette(values)
                     resetForm({values: initialVals})
-                }
-                }
-                // not going to validate, but if ypou want to, here it is:
-                // validationSchema={validation schema here}
+                }}
                 >
                     {({ handleChange, handleBlur, handleSubmit, values }) => (
                 <View style={styles.form}>
@@ -50,32 +45,12 @@ const FoodRoulette:FunctionComponent = () => {
                     <View style={styles.inputWrapper}>
                         <TextInput
                             style={styles.inputStyle}
-                            onChangeText={handleChange('first')}
-                            onBlur={handleBlur('first')}
-                            value={values.first}
+                            onChangeText={handleChange('option')}
+                            onBlur={handleBlur('option')}
+                            value={values.option}
                             placeholder="Choices, choices, choices..."
                             />
                         </View>
-                        <View style={styles.inputWrapper}>
-                            <TextInput
-                            style={styles.inputStyle}
-                            onChangeText={handleChange('second')}
-                            onBlur={handleBlur('second')}
-                            value={values.second}
-                            placeholder="anotha one..."
-                            />
-                        </View>
-                        <View style={styles.inputWrapper}>
-                            <TextInput
-                            style={styles.inputStyle}
-                            onChangeText={handleChange('third')}
-                            onBlur={handleBlur('third')}
-                            value={values.third}
-                            placeholder="anotha one..."
-                            />
-                        </View>
-                    
-                    
                             <Pressable 
                             onPress={() => {
                                 handleSubmit()
@@ -83,7 +58,7 @@ const FoodRoulette:FunctionComponent = () => {
                             }} 
                             style={{margin:"auto", alignItems:"center", backgroundColor:`${colors.secondary}`, borderRadius:50, padding:10,}}
                         >
-                            <Text style={{color: `${colors.accent}`, fontWeight:"bold", fontSize:18,}}>HELP US</Text>
+                            <Text style={{color: `${colors.accent}`, fontWeight:"bold", fontSize:18,}}>ADD</Text>
                         </Pressable>
                     </View>
                 </View>
@@ -92,8 +67,8 @@ const FoodRoulette:FunctionComponent = () => {
                 <View>
                     {options.map((o,i) => {
                         return (
-                        <View>
-                            <Text key={i}>
+                        <View key={i}>
+                            <Text >
                                 {o.toUpperCase()}
                             </Text>
                         </View>
