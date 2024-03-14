@@ -1,6 +1,6 @@
 import { FunctionComponent, useState } from "react";
 import { Container } from "../shared/container";
-import { Text, ActivityIndicator, Pressable, View, StyleSheet, TextInput } from "react-native";
+import { Text, ActivityIndicator, Platform, TouchableWithoutFeedback, KeyboardAvoidingView, Keyboard, Pressable, View, StyleSheet, TextInput } from "react-native";
 import { colors } from "../shared/colors";
 import { Formik } from 'formik';
 
@@ -23,6 +23,10 @@ const WhosPaying:FunctionComponent = () => {
     }
 
     return  (
+        <KeyboardAvoidingView
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        style={styles.container}>
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <Container>
             <Text
              style={styles.headerView}>OK SO WHO'S PAYING?</Text>
@@ -37,7 +41,7 @@ const WhosPaying:FunctionComponent = () => {
                 >
                     {({ handleChange, handleBlur, handleSubmit, values, errors, touched }) => (
                 <View style={styles.form}>
-                {/* <View style={styles.formContainer}> */}
+                <View >
                 <View style={styles.inputWrapper}>
                     <TextInput
                     style={styles.inputStyle}
@@ -52,24 +56,16 @@ const WhosPaying:FunctionComponent = () => {
                     onPress={() => {handleSubmit()}} 
                     style={{ alignItems:"center", backgroundColor:`${colors.secondary}`, borderRadius:50, padding:10, marginBottom:10}}
                 >
-                    <Text style={{color: `${colors.accent}`, fontWeight:"bold", fontSize:18, }}>ADD </Text>
+                    <Text style={{color: `${colors.accent}`, fontWeight:"bold", fontSize:18, paddingHorizontal:10 }}>ADD </Text>
                 </Pressable>
                 </View>
-                // </View>
+                </View>
                 )}
              </Formik>
-             <View>
-             {options.map((o, i) => {
-                return (
-                    <Text 
-                    key={i}
-                    style={styles.optionPerson}>{o.toUpperCase()}</Text>
-                )
-             })}
-           </View>
-           
+             
+           { options.length > 1? 
            <Pressable
-             style={{backgroundColor:`${colors.accent}`, borderRadius:50, padding:10, margin:10}}
+             style={{backgroundColor:`${colors.primary}`, borderRadius:50, paddingHorizontal:60, paddingVertical:10 }}
              onPress={() => {
                 setIsLoading(true);
                 setTimeout(() => {
@@ -79,23 +75,45 @@ const WhosPaying:FunctionComponent = () => {
                 
              }}
              >
-                <Text>PICK FOR US</Text>
-             </Pressable>
+                <Text style={{ fontWeight:"bold"}}>PICK FOR US</Text>
+             </Pressable>  
+             
+             : <></>}
+            <View style={{flexDirection:"row"}}>
+
+                <View style={{margin:50,}}>
+                {options.map((o, i) => {
+                    return (
+                        <Text 
+                        key={i}
+                        style={styles.optionPerson}>{o.toUpperCase()}</Text>
+                    )
+                })}
+                </View>    
+
+                <View
+                style={styles.luckyView}
+                >
+                        <Text style={styles.luckyPerson}>{payPerson.toUpperCase()}</Text>
+                </View>
+
+           </View>
+
            {isLoading ? <ActivityIndicator size="large" color="white" /> : <></>} 
            
-           <View
-           style={styles.luckyView}
-           >
-            <Text 
-            style={styles.luckyPerson}>{payPerson.toUpperCase()}</Text>
-           </View>
+           
         </Container>
+        </TouchableWithoutFeedback>
+        </KeyboardAvoidingView>
     )
 }
 
 export default WhosPaying;
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+      },
     headerView : {
         marginBottom: 50,
         padding: 5,
@@ -105,16 +123,19 @@ const styles = StyleSheet.create({
     },
     optionPerson : {
         color:"white",
+        fontSize: 25,
+        padding:1,
+        fontWeight: "bold"
     },
     
     luckyPerson: {
-        fontSize: 30,
-        color: "white",
+        fontSize: 40,
+        color: `${colors.olive}`,
         fontWeight: "bold"
     },
 
     luckyView: {
-        margin: 10
+        margin: 50
     },
     inputWrapper: {
         marginBottom: 10,
@@ -127,11 +148,12 @@ const styles = StyleSheet.create({
         borderRadius: 50,
         paddingHorizontal: 20,
         paddingVertical:10,
-        color:'white',
+        color:'black',
         backgroundColor:`${colors.accent}`
      },
      form: {
         alignItems: 'center',
-        width:'98%'
+        width:'98%',
+        
     },
 })
