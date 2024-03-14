@@ -1,6 +1,6 @@
 import { FunctionComponent, useState } from "react";
 import { Container } from "../shared/container";
-import { Text, ActivityIndicator, Platform, TouchableWithoutFeedback, KeyboardAvoidingView, Keyboard, Pressable, View, StyleSheet, TextInput } from "react-native";
+import { Text, ActivityIndicator, ScrollView, Platform, TouchableWithoutFeedback, KeyboardAvoidingView, Keyboard, Pressable, View, StyleSheet, TextInput } from "react-native";
 import { colors } from "../shared/colors";
 import { Formik } from 'formik';
 
@@ -28,6 +28,7 @@ const WhosPaying:FunctionComponent = () => {
         style={styles.container}>
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <Container>
+            <ScrollView style={{paddingVertical:40}}>
             <View style={{marginBottom:200, width:'100%', flexDirection:'row', justifyContent:'flex-end',  padding:20}}>
                 <Pressable 
                 onPress={()=> setOptions([])}
@@ -70,7 +71,7 @@ const WhosPaying:FunctionComponent = () => {
              
            { options.length > 1? 
            <Pressable
-             style={{backgroundColor:`${colors.primary}`, borderRadius:50, paddingHorizontal:60, paddingVertical:10 }}
+             style={{backgroundColor:`${colors.primary}`, borderRadius:50, paddingHorizontal:40, paddingVertical:10 }}
              onPress={() => {
                 setIsLoading(true);
                 setTimeout(() => {
@@ -80,7 +81,7 @@ const WhosPaying:FunctionComponent = () => {
                 
              }}
              >
-                <Text style={{ fontWeight:"bold"}}>PICK FOR US</Text>
+                <Text style={{ fontWeight:"bold", textAlign:'center'}}>PICK FOR US</Text>
              </Pressable>  
              
              : <></>}
@@ -106,7 +107,7 @@ const WhosPaying:FunctionComponent = () => {
 
            {isLoading ? <ActivityIndicator size="large" color="white" /> : <></>} 
            
-           
+           </ScrollView>
         </Container>
         </TouchableWithoutFeedback>
         </KeyboardAvoidingView>
@@ -125,7 +126,7 @@ const styles = StyleSheet.create({
       },
     headerView : {
         marginBottom: 50,
-        padding: 5,
+        padding: 20,
         color: "white",
         fontWeight: "bold", 
         fontSize:35
