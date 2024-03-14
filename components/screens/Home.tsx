@@ -15,6 +15,7 @@ const ImageBackgroundContainer = styled(ImageBackground)`
 const Home: FunctionComponent = () => {
 
     const {user} = useAuth();
+    console.log(user)
 
     return (
         

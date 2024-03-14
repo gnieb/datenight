@@ -25,7 +25,7 @@ const WhosPaying:FunctionComponent = () => {
     return  (
         <Container>
             <Text
-             style={styles.headerView}>So... Who's Paying?</Text>
+             style={styles.headerView}>OK SO WHO'S PAYING?</Text>
              <Formik
              initialValues={initialValues}
                 onSubmit={(values, {resetForm}) =>  {
@@ -98,6 +98,7 @@ export default WhosPaying;
 const styles = StyleSheet.create({
     headerView : {
         marginBottom: 50,
+        padding: 5,
         color: "white",
         fontWeight: "bold", 
         fontSize:35

@@ -30,7 +30,7 @@ const Drawer = () => {
       <Drawer.Screen name="Home" component={Home} />
       <Drawer.Screen name="Roulette" component={FoodRoulette} />
       <Drawer.Screen name="Explore" component={Explore} />
-      <Drawer.Screen name="WhosPaying" component={WhosPaying} />
+      <Drawer.Screen name="Who's Paying" component={WhosPaying} />
       <Drawer.Screen name="Chat" component={Chat} />
       <Drawer.Screen name="Profile" component={Profile} />
       
