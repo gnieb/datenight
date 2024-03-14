@@ -28,6 +28,9 @@ const WhosPaying:FunctionComponent = () => {
         style={styles.container}>
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <Container>
+            <View style={{marginBottom:200, width:'100%', flexDirection:'row', justifyContent:'flex-end',  padding:10}}>
+                <Pressable style={{ width:100, backgroundColor:`${colors.tertiary}`, borderRadius:50, padding:5}} ><Text style={{textAlign:"center"}} >START OVER</Text></Pressable>
+            </View>
             <Text
              style={styles.headerView}>OK SO WHO'S PAYING?</Text>
              <Formik
@@ -113,6 +116,10 @@ export default WhosPaying;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+      },
+      startOver: {
+        textAlign: "right",
+        marginBottom: 50,
       },
     headerView : {
         marginBottom: 50,
