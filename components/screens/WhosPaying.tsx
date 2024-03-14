@@ -28,8 +28,10 @@ const WhosPaying:FunctionComponent = () => {
         style={styles.container}>
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <Container>
-            <View style={{marginBottom:200, width:'100%', flexDirection:'row', justifyContent:'flex-end',  padding:10}}>
-                <Pressable style={{ width:100, backgroundColor:`${colors.tertiary}`, borderRadius:50, padding:5}} ><Text style={{textAlign:"center"}} >START OVER</Text></Pressable>
+            <View style={{marginBottom:200, width:'100%', flexDirection:'row', justifyContent:'flex-end',  padding:20}}>
+                <Pressable 
+                onPress={()=> setOptions([])}
+                style={{ width:100, backgroundColor:`${colors.tertiary}`, borderRadius:50, padding:5}} ><Text style={{textAlign:"center"}} >START OVER</Text></Pressable>
             </View>
             <Text
              style={styles.headerView}>OK SO WHO'S PAYING?</Text>
@@ -57,7 +59,7 @@ const WhosPaying:FunctionComponent = () => {
                 </View>
                     <Pressable 
                     onPress={() => {handleSubmit()}} 
-                    style={{ alignItems:"center", backgroundColor:`${colors.secondary}`, borderRadius:50, padding:10, marginBottom:10}}
+                    style={{ alignItems:"center", backgroundColor:`${colors.olive}`, borderRadius:50, padding:10, marginBottom:10}}
                 >
                     <Text style={{color: `${colors.accent}`, fontWeight:"bold", fontSize:18, paddingHorizontal:10 }}>ADD </Text>
                 </Pressable>
