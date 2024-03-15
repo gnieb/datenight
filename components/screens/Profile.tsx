@@ -1,14 +1,24 @@
 import { FunctionComponent, useState, useEffect } from "react";
-import { SafeAreaView, Text, TextInput, Pressable, StyleSheet, View, Modal, Alert } from "react-native";
+import { SafeAreaView, ImageBackground, Text, TextInput, Pressable, StyleSheet, View, Modal, Alert } from "react-native";
 import { Container } from "../shared/container";
 import { useAuth } from "../context/AuthContext";
 import { Formik } from 'formik';
 import { colors } from "../shared/colors";
 import * as Yup from 'yup';
 import { API_URL } from "../../assets/API";
+import styled from "styled-components/native";
+import background from "../../assets/photos/blurryholdinghands.avif"
 
+const ImageBackgroundContainer = styled(ImageBackground)`
+  flex: 1;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+`;
 
 const Profile:FunctionComponent = () => {
+
+
 
     const {onLogout, user} = useAuth();
     const [showModal, setShowModal] = useState<boolean>(false);
@@ -81,7 +91,10 @@ const Profile:FunctionComponent = () => {
 
     return  (
         <Container>
-            
+            <ImageBackgroundContainer
+            source={background}
+            style={styles.image}
+            resizeMode="cover">
             <View style={styles.centeredView}>
                 <View>
                     <Text
@@ -169,6 +182,7 @@ const Profile:FunctionComponent = () => {
                     <Text style={{fontSize:18, fontWeight:"bold"}}>LOG OUT</Text>
                 </Pressable>
             </View>
+            </ImageBackgroundContainer>
         </Container>
     )
 }
@@ -177,11 +191,16 @@ export default Profile;
 
 
 const styles = StyleSheet.create({
+    image :{
+        flex: 1,
+        width: '100%',
+    },
     centeredView: {
-      flex: 1,
+      padding: 50,  
       justifyContent: 'center',
       alignItems: 'center',
       marginTop: 22,
+      backgroundColor: `${colors.base}`
     },
     modalView: {
       margin: 20,
@@ -205,7 +224,7 @@ const styles = StyleSheet.create({
       elevation: 2,
     },
     buttonOpen: {
-      backgroundColor: '#F194FF',
+      backgroundColor: `${colors.olive}`,
     },
     buttonClose: {
       backgroundColor: 'black',
@@ -220,7 +239,7 @@ const styles = StyleSheet.create({
       textAlign: 'center',
     },
     logout : {
-        backgroundColor: "white",
+        backgroundColor: `${colors.primary}`,
         borderRadius:50,
         padding: 8, 
         margin: 10
