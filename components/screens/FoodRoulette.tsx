@@ -8,18 +8,15 @@ import { string } from "yup";
 
 
 const FoodRoulette:FunctionComponent = () => {
-    const [options, setOptions] = useState<String[]>(["first thing", "second thing"])
+    const [options, setOptions] = useState<String[]>([])
 
     const initialVals = {
         option: "",
     }
 
     const [randomChoice, setRandomChoice] = useState<String>("")
-    const handleRoulette = (vals:any) => {
-        // Object.values(vals) is an array of all the values in the values oject submitted thru formik
-        const choices = Object.values(vals)
-        const random = choices[Math.floor(Math.random() * (choices.length))]
-        console.log(random )
+    const handleRoulette = () => {
+        const random = options[Math.floor(Math.random() * (options.length))]
         setRandomChoice(random)
         // console.log(Object.values(vals))
     }
