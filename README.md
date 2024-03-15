@@ -5,7 +5,7 @@ We always struggle to decide what we're doing / where we're going. Why is pickin
 
 ## Features in Progress
 - Explore using the google maps API
-- connect to your partner and share ideas for next date night or where you want to eat dinner tonight
+- Your partner can connect to your profile - working on an auto email that wil request, and require the other person to accept before the connection is complete
 - Chat feature with your partner
 
 
@@ -13,6 +13,7 @@ We always struggle to decide what we're doing / where we're going. Why is pickin
 - User authentication and security with auto-log in if you have an active session
 - Roulette - let the app take the stress out of choosing between several options. Submit your top three choices, and the app will do the rest
 - Who's Paying? Skip the fight over it. Fair is fair. Maybe it's just you and your partner, or maybe you're out with friends! Add as many people as you want to this feature and let it do the work for you.
+- Connect to your partner through your profile! 
 
 ## Usage
 * How to open the console in ios development simulator?

@@ -32,7 +32,7 @@ const FoodRoulette:FunctionComponent = () => {
                 style={styles.container}>
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <Container>
-                    <ScrollView automaticallyAdjustKeyboardInsets={true}>
+                    <ScrollView >
                         <View style={{marginBottom:100}}>
                             <Text style={{fontSize:80}}>WHERE ARE WE GOING?</Text>
                         </View>
