@@ -1,6 +1,6 @@
 import { FunctionComponent, useState } from "react";
 import { Container } from "../shared/container";
-import { Text, Platform, TouchableWithoutFeedback, StyleSheet, View, TextInput, Pressable, KeyboardAvoidingView, Keyboard } from "react-native";
+import { Text, Platform, ScrollView, TouchableWithoutFeedback, StyleSheet, View, TextInput, Pressable, KeyboardAvoidingView, Keyboard } from "react-native";
 import { colors } from "../shared/colors";
 import { Formik } from 'formik';
 import { string } from "yup";
@@ -32,55 +32,60 @@ const FoodRoulette:FunctionComponent = () => {
                 style={styles.container}>
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <Container>
-                <Formik
-                initialValues={initialVals}
-                onSubmit={(values, {resetForm}) =>  {
-                    console.log(values)
-                    addOption(values.option)
-                    resetForm({values: initialVals})
-                }}
-                >
-                    {({ handleChange, handleBlur, handleSubmit, values }) => (
-                <View style={styles.form}>
-                    <View style={styles.formContainer}>
-                    <View style={styles.inputWrapper}>
-                        <TextInput
-                            style={styles.inputStyle}
-                            onChangeText={handleChange('option')}
-                            onBlur={handleBlur('option')}
-                            value={values.option}
-                            placeholder="Choices, choices, choices..."
-                            />
+                    <ScrollView automaticallyAdjustKeyboardInsets={true}>
+                        <View style={{marginBottom:100}}>
+                            <Text style={{fontSize:80}}>WHERE ARE WE GOING?</Text>
                         </View>
-                            <Pressable 
-                            onPress={() => {
-                                handleSubmit()
-                                Keyboard.dismiss()
-                            }} 
-                            style={{margin:"auto", alignItems:"center", backgroundColor:`${colors.secondary}`, borderRadius:50, padding:10,}}
-                        >
-                            <Text style={{color: `${colors.accent}`, fontWeight:"bold", fontSize:18,}}>ADD</Text>
-                        </Pressable>
+                        <View>
+                        {options.map((o,i) => {
+                            return (
+                            <View key={i}>
+                                <Text style={{fontSize:20, color:"white"}} >
+                                    {o.toUpperCase()}
+                                </Text>
+                            </View>
+                            )
+                        })}
+                        </View>
+                        <View style={styles.randomChoiceView}>
+                            <Text 
+                            style={styles.randomChoice}>{randomChoice}</Text>
+                        </View>
+                    <Formik
+                    initialValues={initialVals}
+                    onSubmit={(values, {resetForm}) =>  {
+                        console.log(values)
+                        addOption(values.option)
+                        resetForm({values: initialVals})
+                    }}
+                    >
+                        {({ handleChange, handleBlur, handleSubmit, values }) => (
+                    <View style={styles.form}>
+                        <View style={styles.formContainer}>
+                        <View style={styles.inputWrapper}>
+                            <TextInput
+                                style={styles.inputStyle}
+                                onChangeText={handleChange('option')}
+                                onBlur={handleBlur('option')}
+                                value={values.option}
+                                placeholder="Choices, choices, choices..."
+                                />
+                            </View>
+                                <Pressable 
+                                onPress={() => {
+                                    handleSubmit()
+                                    Keyboard.dismiss()
+                                }} 
+                                style={{margin:"auto", alignItems:"center", backgroundColor:`${colors.secondary}`, borderRadius:50, padding:10,}}
+                            >
+                                <Text style={{color: `${colors.accent}`, fontWeight:"bold", fontSize:18,}}>ADD</Text>
+                            </Pressable>
+                        </View>
                     </View>
-                </View>
-                )}
-                </Formik>
-                <View>
-                    {options.map((o,i) => {
-                        return (
-                        <View key={i}>
-                            <Text >
-                                {o.toUpperCase()}
-                            </Text>
-                        </View>
-                        )
-                    })}
-                </View>
-                <View style={styles.randomChoiceView}>
-                    <Text style={styles.randomChoice}>WHERE ARE WE GOING?</Text>
-                    <Text 
-                    style={styles.randomChoice}>{randomChoice}</Text>
-                </View>
+                    )}
+                    </Formik>
+                    
+                    </ScrollView>
                 </Container>
             </TouchableWithoutFeedback>
         </KeyboardAvoidingView>
@@ -93,6 +98,7 @@ const styles = StyleSheet.create({
     
     container: {
         flex: 1,
+       
       },
     form: {
         alignItems: 'center',
