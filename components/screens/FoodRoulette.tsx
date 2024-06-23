@@ -1,6 +1,6 @@
 import { FunctionComponent, useState } from "react";
 import { Container } from "../shared/container";
-import { Text, Platform, ScrollView, TouchableWithoutFeedback, StyleSheet, View, TextInput, Pressable, KeyboardAvoidingView, Keyboard } from "react-native";
+import { SafeAreaView, Text, Platform, ScrollView, TouchableWithoutFeedback, StyleSheet, View, TextInput, Pressable, KeyboardAvoidingView, Keyboard } from "react-native";
 import { colors } from "../shared/colors";
 import { Formik } from 'formik';
 import { string } from "yup";
@@ -31,10 +31,10 @@ const FoodRoulette:FunctionComponent = () => {
                 behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
                 style={styles.container}>
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-                <Container>
-                    <ScrollView >
-                        <View style={{marginBottom:100}}>
-                            <Text style={{fontSize:80}}>WHERE ARE WE GOING?</Text>
+                <SafeAreaView>
+                    <ScrollView>
+                        <View style={{marginBottom:50}}>
+                            <Text style={{fontSize:50}}>WHERE ARE WE GOING?</Text>
                         </View>
                         <View>
                         {options.map((o,i) => {
@@ -86,7 +86,7 @@ const FoodRoulette:FunctionComponent = () => {
                     </Formik>
                     
                     </ScrollView>
-                </Container>
+                </SafeAreaView>
             </TouchableWithoutFeedback>
         </KeyboardAvoidingView>
     )
