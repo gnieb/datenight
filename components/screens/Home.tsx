@@ -27,6 +27,7 @@ const Home: FunctionComponent = () => {
                 >
             <View style={styles.container}>
                 <Text style={{color:"white", fontWeight:"bold", fontSize:20}}>HEY {user.first.toUpperCase()}</Text>
+                <Text style={{color: "white", fontWeight:"bold", fontSize:20}} ></Text>
             </View>
         </ImageBackgroundContainer>
     </Container>

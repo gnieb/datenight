@@ -5,7 +5,7 @@ We always struggle to decide what we're doing / where we're going. Why is pickin
 
 ## Features in Progress
 - Explore using the google maps API
-- Your partner can connect to your profile - working on an auto email that wil request, and require the other person to accept before the connection is complete
+- Your partner can connect to your profile - working on an auto email that will send your connect request, and require the other person to accept before the connection is complete
 - Chat feature with your partner
 
 
